@@ -1,0 +1,4 @@
+rootProject.name = 'axon-multi-project-template'
+include 'core'
+include 'ms-1'
+

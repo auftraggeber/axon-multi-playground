@@ -1,0 +1,28 @@
+allprojects {
+    group = 'de.langner_dev'
+    version = '0.0.1-SNAPSHOT'
+}
+
+subprojects {
+
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+        maven { url "https://mvnrepository.com/artifact/org.dom4j/dom4j" }
+        maven { url "https://mvnrepository.com/artifact/xom/xom" }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        runtimeOnly 'com.h2database:h2'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation ('org.axonframework:axon-spring-boot-starter:4.9.2')
+
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+    }
+}
