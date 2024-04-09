@@ -1,4 +1,6 @@
-rootProject.name = 'axon-multi-project-template'
+rootProject.name = 'axon-multi-playground'
 include 'core'
-include 'ms-1'
+include 'ms-article'
+include 'ms-account'
+include 'ms-order'
 

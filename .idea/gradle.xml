@@ -10,7 +10,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/ms-1" />
+            <option value="$PROJECT_DIR$/ms-account" />
+            <option value="$PROJECT_DIR$/ms-article" />
+            <option value="$PROJECT_DIR$/ms-order" />
           </set>
         </option>
       </GradleProjectSettings>
