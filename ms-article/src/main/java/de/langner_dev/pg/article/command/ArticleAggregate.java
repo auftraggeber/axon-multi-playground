@@ -18,15 +18,14 @@ import java.util.UUID;
 @Aggregate
 public class ArticleAggregate {
 
-    @AggregateIdentifier
-    String articleId;
 
+    @AggregateIdentifier
     String name;
     long count;
 
     @CommandHandler
     public ArticleAggregate(CreateArticleCmd cmd) {
-        AggregateLifecycle.apply(new ArticleCreatedEvt(cmd.getArticleId(), cmd.getName(), cmd.getCount()));
+        AggregateLifecycle.apply(new ArticleCreatedEvt(cmd.getName(), cmd.getCount()));
     }
 
     @CommandHandler
@@ -37,7 +36,6 @@ public class ArticleAggregate {
 
     @EventSourcingHandler
     public void on(ArticleCreatedEvt evt) {
-        this.articleId = evt.getArticleId();
         this.name = evt.getName();
         this.count = evt.getCount();
     }

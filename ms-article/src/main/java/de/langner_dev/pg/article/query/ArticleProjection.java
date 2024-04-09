@@ -16,7 +16,7 @@ public class ArticleProjection {
 
     @QueryHandler
     public ArticleQuery handle(FindArticleQuery query) {
-        return repository.findByArticleId(query.getArticleId());
+        return repository.findByName(query.getArticleId());
     }
 
     @QueryHandler
@@ -26,7 +26,7 @@ public class ArticleProjection {
 
     @EventHandler
     public void on(ArticleCreatedEvt evt) {
-        repository.save(new ArticleQuery(evt.getArticleId(), evt.getName(), 0));
+        repository.save(new ArticleQuery(evt.getName(), 0));
     }
 
 }

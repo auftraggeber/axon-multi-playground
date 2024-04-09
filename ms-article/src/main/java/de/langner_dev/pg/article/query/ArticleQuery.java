@@ -14,7 +14,6 @@ import lombok.Setter;
 @Entity
 public class ArticleQuery extends BaseEntity<Long> {
 
-    private String articleId;
     private String name;
     private long count;
 

@@ -7,8 +7,6 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 public class CreateAccountCmd {
 
     @TargetAggregateIdentifier
-    String accountId;
-
     String name;
     String email;
 }

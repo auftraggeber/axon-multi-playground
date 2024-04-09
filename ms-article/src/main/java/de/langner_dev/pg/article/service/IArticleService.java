@@ -9,7 +9,7 @@ import java.util.concurrent.CompletableFuture;
 public interface IArticleService {
 
     CompletableFuture<String> createArticle(String name);
-    CompletableFuture<ArticleQuery> findArticle(String articleId);
+    CompletableFuture<ArticleQuery> findArticle(String name);
     CompletableFuture<ArticleQuery[]> findAllArticles();
 
 }
