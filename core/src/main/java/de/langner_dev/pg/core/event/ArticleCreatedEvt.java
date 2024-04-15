@@ -6,7 +6,8 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Value
 public class ArticleCreatedEvt {
 
-    @TargetAggregateIdentifier
+    String articleId;
+
     String name;
     long count;
 

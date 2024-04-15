@@ -3,8 +3,8 @@ package de.langner_dev.pg.article.query.request;
 import lombok.Value;
 
 @Value
-public class FindArticleQuery {
+public class FindArticleQueryByName {
 
-    String articleId;
+    String articleName;
 
 }
