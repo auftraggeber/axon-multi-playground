@@ -24,13 +24,13 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @RequestMapping("/{name}/create")
+    @RequestMapping("/create/{name}")
     public ResponseEntity<ArticleResponse> createArticle(@PathVariable("name") String name) throws ExecutionException,
             InterruptedException {
         try {
             String id = articleService.createArticle(name).get();
             ArticleQuery query = articleService.findArticleByArticleId(id).get();
-            return ResponseEntity.ok(new ArticleResponse(query.getName(), query.getCount()));
+            return ResponseEntity.ok(new ArticleResponse(query.getArticleId(), query.getName(), query.getCount()));
         }
         catch (IllegalArgumentException exception) {
             return ResponseEntity.badRequest().build();
@@ -41,25 +41,32 @@ public class ArticleController {
     public ResponseEntity<ArticleResponse[]> getAllArticles() throws ExecutionException, InterruptedException {
         return ResponseEntity.ok(
                 Arrays.stream(articleService.findAllArticles().get())
-                        .map(articleQuery -> new ArticleResponse(articleQuery.getName(), articleQuery.getCount()))
+                        .map(articleQuery -> new ArticleResponse(articleQuery.getArticleId(), articleQuery.getName(), articleQuery.getCount()))
                         .toArray(ArticleResponse[]::new)
         );
     }
 
-    @RequestMapping("/{name}")
-    public ResponseEntity<ArticleResponse> getArticleByName(@PathVariable("name") String name) {
+    @RequestMapping("/{articleId}")
+    public ResponseEntity<ArticleResponse> getArticleByName(@PathVariable("articleId") String articleId) {
         try {
-            ArticleQuery query = articleService.findArticleByName(name).get();
-            return ResponseEntity.ok(new ArticleResponse(query.getName(), query.getCount()));
+            ArticleQuery query = articleService.findArticleByArticleId(articleId).get();
+            return ResponseEntity.ok(new ArticleResponse(query.getArticleId(), query.getName(), query.getCount()));
         }
         catch (ExecutionException | InterruptedException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @RequestMapping("/{name}/count/add")
-    public ResponseEntity<ArticleResponse> addArticleCount(@PathVariable("name") String name, @Param("count") long count) {
-        return ResponseEntity.internalServerError().build();
+    @RequestMapping("/{articleId}/count/set")
+    public ResponseEntity<ArticleResponse> addArticleCount(@PathVariable("articleId") String articleId, @Param("count") long count) {
+        try {
+            articleService.updateArticleCount(articleId, count);
+            ArticleQuery query = articleService.findArticleByArticleId(articleId).get();
+            return ResponseEntity.ok(new ArticleResponse(query.getArticleId(), query.getName(), query.getCount()));
+        }
+        catch (ExecutionException | InterruptedException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

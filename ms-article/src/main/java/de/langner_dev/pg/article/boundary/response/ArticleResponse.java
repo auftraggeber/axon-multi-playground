@@ -5,6 +5,7 @@ import lombok.Value;
 @Value
 public class ArticleResponse {
 
+    String articleId;
     String name;
     long count;
 

@@ -47,8 +47,8 @@ public class ArticleService implements IArticleService {
     }
 
     @Override
-    public CompletableFuture<ArticleQuery> updateArticleCount(String articleId, long newCount) {
-        return commandGateway.send(new UpdateArticleCountCmd(articleId, newCount));
+    public void updateArticleCount(String articleId, long newCount) {
+        commandGateway.send(new UpdateArticleCountCmd(articleId, newCount));
     }
 
 

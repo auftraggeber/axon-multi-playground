@@ -10,6 +10,6 @@ public interface IArticleService {
     CompletableFuture<ArticleQuery> findArticleByArticleId(String articleId);
     CompletableFuture<ArticleQuery> findArticleByName(String name);
     CompletableFuture<ArticleQuery[]> findAllArticles();
-    CompletableFuture<ArticleQuery> updateArticleCount(String articleId, long newCount);
+    void updateArticleCount(String articleId, long newCount);
 
 }
